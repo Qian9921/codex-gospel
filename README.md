@@ -24,6 +24,16 @@ It also ships optional overlays for the full public-safe gospel:
 
 The practical result: Codex should stop acting like a vague chatbot and start acting like a careful engineering/research partner. It must inspect live state, separate facts from inference, explain professional details in normal language, verify before claiming completion, and load sharper overlays when the task needs them.
 
+## Optional Companion Tools
+
+Codex Gospel stays lightweight by design. Execution engines that are useful but not universal live in separate repos.
+
+| Tool | Repo | Relationship |
+| --- | --- | --- |
+| `dsteam` | <https://github.com/Qian9921/dsteam> | Optional Codex-supervised external worker orchestration. Compatible with this gospel, but not required by it. |
+
+Use `dsteam` only when you want external worker lanes for bounded scouting, implementation, testing, review, or evidence packing. Codex Gospel remains the supervisor policy; `dsteam` is an optional execution engine users can choose to install or ignore.
+
 ## Core Contract
 
 - **Evidence beats reassurance.** Inspect the actual files, commands, logs, data, docs, or external references before making claims.
