@@ -1,0 +1,12 @@
+.DS_Store
+*.swp
+*.tmp
+*.bak
+
+# Local verification output
+.codex-gospel-doctor/
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+node_modules/
