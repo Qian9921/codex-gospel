@@ -12,3 +12,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check repository package
         run: scripts/check-repo.sh
+      - name: Smoke test install lifecycle
+        run: scripts/smoke-install.sh

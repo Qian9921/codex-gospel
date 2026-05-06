@@ -77,11 +77,11 @@ Bundled overlays:
 scripts/doctor.sh --project-dir /path/to/project
 ```
 
-Verify overlays:
+Verify overlays, and use `--strict` when a warning should fail CI or an install gate:
 
 ```bash
 scripts/doctor.sh --project-dir /path/to/project --overlay research-audit
-scripts/doctor.sh --project-dir /path/to/project --all-overlays
+scripts/doctor.sh --project-dir /path/to/project --all-overlays --strict
 ```
 
 If `codex` is available, the doctor checks prompt visibility with:
@@ -111,3 +111,44 @@ Overlays use separate marker blocks:
 ```
 
 Existing files are backed up before modification.
+
+Skill backups are stored outside active `skills/` directories:
+
+```text
+${CODEX_HOME:-$HOME/.codex}/backups/codex-gospel/skills/
+<project>/.codex/backups/codex-gospel/skills/
+```
+
+This prevents Codex from loading old backup skills as if they were current.
+
+## Uninstall And Rollback
+
+Remove the user-level core install:
+
+```bash
+scripts/uninstall.sh --scope user
+```
+
+Remove project-level core plus every bundled overlay:
+
+```bash
+scripts/uninstall.sh --scope project --project-dir /path/to/project --all-overlays
+```
+
+Remove both user and project installs:
+
+```bash
+scripts/uninstall.sh --scope both --project-dir /path/to/project --all-overlays
+```
+
+Uninstall removes marker-bounded blocks and installed skills. It backs up files and skills before removal, using the same backup model as install.
+
+## Smoke Test
+
+For package maintainers, run the install lifecycle smoke test:
+
+```bash
+scripts/smoke-install.sh
+```
+
+The smoke test installs into temporary user and project directories, reinstalls to catch backup-skill pollution, runs strict doctor, then uninstalls and checks that marker blocks and core skills are gone.

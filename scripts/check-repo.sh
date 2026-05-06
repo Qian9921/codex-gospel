@@ -8,9 +8,14 @@ cd "$REPO_ROOT"
 required_files=(
   "README.md"
   "AGENTS.md"
+  ".github/workflows/check.yml"
+  "CHANGELOG.md"
+  "CONTRIBUTING.md"
   "LICENSE"
+  "SECURITY.md"
   "codex/skills/codex-gospel/SKILL.md"
   "docs/audit-format.md"
+  "docs/companion-tools.md"
   "docs/engineering-standards.md"
   "docs/google-practices.md"
   "docs/overlay-system.md"
@@ -19,7 +24,9 @@ required_files=(
   "templates/global/AGENTS.md"
   "templates/project/AGENTS.md"
   "scripts/install.sh"
+  "scripts/uninstall.sh"
   "scripts/doctor.sh"
+  "scripts/smoke-install.sh"
 )
 
 for path in "${required_files[@]}"; do
@@ -80,14 +87,14 @@ for path in templates/snippets/AGENTS-gospel-block.md templates/global/AGENTS.md
   }
 done
 
-for path in scripts/install.sh scripts/doctor.sh scripts/check-repo.sh; do
+for path in scripts/install.sh scripts/uninstall.sh scripts/doctor.sh scripts/check-repo.sh scripts/smoke-install.sh; do
   [[ -x "$path" ]] || {
     echo "script is not executable: $path" >&2
     exit 1
   }
 done
 
-for path in scripts/install.sh scripts/doctor.sh scripts/check-repo.sh; do
+for path in scripts/install.sh scripts/uninstall.sh scripts/doctor.sh scripts/check-repo.sh scripts/smoke-install.sh; do
   bash -n "$path" || {
     echo "shell syntax check failed: $path" >&2
     exit 1

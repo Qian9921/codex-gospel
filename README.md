@@ -49,7 +49,7 @@ Use `dsteam` only when you want external worker lanes for bounded scouting, impl
 Clone this repository:
 
 ```bash
-git clone https://github.com/YOUR_ORG/codex-gospel.git
+git clone https://github.com/Qian9921/codex-gospel.git
 cd codex-gospel
 ```
 
@@ -90,10 +90,16 @@ Verify:
 
 ```bash
 scripts/doctor.sh --project-dir /path/to/project
-scripts/doctor.sh --project-dir /path/to/project --all-overlays
+scripts/doctor.sh --project-dir /path/to/project --all-overlays --strict
 ```
 
 If `codex` is installed, the doctor also checks whether `codex debug prompt-input` can see the installed rules.
+
+Uninstall marker blocks and installed skills when you need a clean rollback:
+
+```bash
+scripts/uninstall.sh --scope both --project-dir /path/to/project --all-overlays
+```
 
 ## Repository Layout
 
@@ -104,8 +110,10 @@ docs/                              # Human-readable gospel reference
 examples/                          # Example project AGENTS files
 overlays/                          # Optional public-safe gospel overlays
 scripts/install.sh                 # Safe installer with marker-based updates
+scripts/uninstall.sh               # Marker/skill rollback helper
 scripts/doctor.sh                  # Local verification
 scripts/check-repo.sh              # CI/package sanity checks
+scripts/smoke-install.sh           # Install/reinstall/uninstall smoke test
 templates/global/AGENTS.md         # Full global user-level AGENTS template
 templates/project/AGENTS.md        # Full project-level AGENTS template
 templates/snippets/                # Marker blocks inserted by installer
@@ -116,6 +124,7 @@ templates/snippets/                # Marker blocks inserted by installer
 The installer is designed to be additive:
 
 - It creates backups before changing an existing `AGENTS.md`.
+- It keeps skill backups outside active `skills/` directories so Codex does not load old backup skills.
 - It updates only marker-bounded gospel blocks.
 - It installs user skills under `${CODEX_HOME:-$HOME/.codex}/skills/`.
 - It installs project skills under `<project>/.codex/skills/` for project-scoped installs.
@@ -141,7 +150,7 @@ For a team:
 
 ## Remote Publishing
 
-This local repo is ready to publish. A typical first push is:
+Forks can publish their own copy with:
 
 ```bash
 git remote add origin git@github.com:YOUR_ORG/codex-gospel.git
@@ -161,6 +170,7 @@ Use `--private` instead of `--public` if the repo should not be visible to every
 - [Overlay system](docs/overlay-system.md)
 - [Google practices overlay](docs/google-practices.md)
 - [Engineering standards](docs/engineering-standards.md)
+- [Companion tools](docs/companion-tools.md)
 - [Source inventory](docs/source-inventory.md)
 - [Audit format](docs/audit-format.md)
 - [Installation](docs/installation.md)

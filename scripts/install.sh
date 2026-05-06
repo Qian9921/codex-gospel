@@ -163,6 +163,18 @@ backup_path() {
   fi
 }
 
+backup_skill_dir() {
+  local path="$1"
+  local skills_root="$2"
+  local skill_name
+  local backup_root
+
+  skill_name="$(basename "$path")"
+  backup_root="$(dirname "$skills_root")/backups/codex-gospel/skills"
+  mkdir -p "$backup_root"
+  cp -R "$path" "$backup_root/$skill_name.$(timestamp)"
+}
+
 upsert_marker_block() {
   local target="$1"
   local block_file="$2"
@@ -184,14 +196,35 @@ upsert_marker_block() {
   backup_path "$target"
   tmp="$(mktemp)"
 
-  awk -v start="$start_marker" -v end="$end_marker" '
-    $0 == start { skip = 1; next }
-    $0 == end { skip = 0; next }
-    skip != 1 { print }
-  ' "$target" > "$tmp"
+  if grep -Fxq "$start_marker" "$target" || grep -Fxq "$end_marker" "$target"; then
+    if ! grep -Fxq "$start_marker" "$target" || ! grep -Fxq "$end_marker" "$target"; then
+      echo "marker pair is incomplete in $target: $start_marker / $end_marker" >&2
+      rm -f "$tmp"
+      exit 1
+    fi
+    awk -v start="$start_marker" -v end="$end_marker" -v block_file="$block_file" '
+      BEGIN {
+        while ((getline line < block_file) > 0) {
+          block = block line ORS
+        }
+      }
+      $0 == start {
+        printf "%s", block
+        skip = 1
+        next
+      }
+      $0 == end {
+        skip = 0
+        next
+      }
+      skip != 1 { print }
+    ' "$target" > "$tmp"
+  else
+    cat "$target" > "$tmp"
+    printf "\n" >> "$tmp"
+    cat "$block_file" >> "$tmp"
+  fi
 
-  printf "\n" >> "$tmp"
-  cat "$block_file" >> "$tmp"
   mv "$tmp" "$target"
   echo "updated $target"
 }
@@ -207,7 +240,7 @@ install_skill_dir() {
 
   mkdir -p "$skills_root"
   if [[ -e "$target_dir" ]]; then
-    backup_path "$target_dir"
+    backup_skill_dir "$target_dir" "$skills_root"
     rm -rf "$target_dir"
   fi
   mkdir -p "$target_dir"

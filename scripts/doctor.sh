@@ -4,6 +4,9 @@ set -euo pipefail
 PROJECT_DIR="$(pwd)"
 CODEX_HOME_DIR="${CODEX_HOME:-$HOME/.codex}"
 RUN_CODEX_CHECK="auto"
+STRICT=0
+PACKAGE_MODE=0
+WARNINGS=0
 ALL_OVERLAYS=0
 REQUESTED_OVERLAYS=()
 SELECTED_OVERLAYS=()
@@ -27,14 +30,19 @@ list_available_overlays() {
 usage() {
   cat <<'USAGE'
 Usage:
-  scripts/doctor.sh [--project-dir /path/to/project] [--codex-home PATH] [--overlay NAME] [--all-overlays] [--no-codex-check]
+  scripts/doctor.sh [--project-dir /path/to/project] [--codex-home PATH] [--overlay NAME] [--all-overlays] [--strict] [--package-mode] [--no-codex-check]
 
 Checks:
   - repository package files
   - installed codex-gospel skill
   - installed overlay marker blocks and skills when requested
   - user/project AGENTS marker blocks
+  - Codex-visible backup skill pollution
   - optional Codex prompt visibility via codex debug prompt-input
+
+Options:
+  --strict        Exit nonzero when a warning is found.
+  --package-mode  Treat this repository as the source package, not an installed project.
 USAGE
 }
 
@@ -50,6 +58,14 @@ while [[ $# -gt 0 ]]; do
       ;;
     --no-codex-check)
       RUN_CODEX_CHECK="no"
+      shift
+      ;;
+    --strict)
+      STRICT=1
+      shift
+      ;;
+    --package-mode)
+      PACKAGE_MODE=1
       shift
       ;;
     --overlay)
@@ -124,6 +140,7 @@ ok() {
 }
 
 warn() {
+  WARNINGS=$((WARNINGS + 1))
   echo "warn: $*" >&2
 }
 
@@ -138,6 +155,27 @@ contains() {
   [[ -f "$file" ]] && grep -Fq "$pattern" "$file"
 }
 
+check_backup_skill_pollution() {
+  local skills_root="$1"
+  local label="$2"
+  local found=0
+  local path
+
+  [[ -d "$skills_root" ]] || return 0
+
+  while IFS= read -r -d '' path; do
+    warn "$label has Codex-visible backup skill: $path"
+    found=1
+  done < <(
+    find "$skills_root" -maxdepth 1 -mindepth 1 -type d -name '*.bak.*' \
+      -exec test -f '{}/SKILL.md' ';' -print0
+  )
+
+  if [[ "$found" -eq 0 ]]; then
+    ok "$label has no Codex-visible backup skills"
+  fi
+}
+
 resolve_overlays
 
 if [[ -f "$HOME/AGENTS.md" ]]; then
@@ -150,7 +188,13 @@ else
   warn "user AGENTS.md not found"
 fi
 
-if [[ -f "$PROJECT_DIR/AGENTS.md" ]]; then
+if [[ "$PACKAGE_MODE" -eq 1 ]]; then
+  if [[ -f "$PROJECT_DIR/AGENTS.md" ]]; then
+    ok "package source AGENTS.md exists outside the installed-project marker contract"
+  else
+    warn "package source AGENTS.md not found: $PROJECT_DIR/AGENTS.md"
+  fi
+elif [[ -f "$PROJECT_DIR/AGENTS.md" ]]; then
   if contains "$PROJECT_DIR/AGENTS.md" "<!-- CODEX-GOSPEL:START -->"; then
     ok "project AGENTS.md has Codex Gospel marker"
   else
@@ -159,6 +203,9 @@ if [[ -f "$PROJECT_DIR/AGENTS.md" ]]; then
 else
   warn "project AGENTS.md not found: $PROJECT_DIR/AGENTS.md"
 fi
+
+check_backup_skill_pollution "$CODEX_HOME_DIR/skills" "user skills directory"
+check_backup_skill_pollution "$PROJECT_DIR/.codex/skills" "project skills directory"
 
 if [[ -f "$CODEX_HOME_DIR/skills/codex-gospel/SKILL.md" ]]; then
   ok "user codex-gospel skill installed"
@@ -234,6 +281,10 @@ if [[ "$RUN_CODEX_CHECK" != "no" ]]; then
   else
     warn "codex command not found; skipped prompt visibility check"
   fi
+fi
+
+if [[ "$STRICT" -eq 1 && "$WARNINGS" -gt 0 ]]; then
+  fail "doctor found $WARNINGS warning(s) in strict mode"
 fi
 
 ok "doctor completed"
