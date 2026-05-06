@@ -19,7 +19,7 @@ The core should be safe for almost any project. Overlays add sharper behavior fo
 
 Overlay names describe the stable job they do, not a person, employer, or local project.
 
-- `agent-discipline`, not a celebrity name: the durable concept is disciplined agent behavior.
+- `agent-discipline`, not a celebrity name: the durable concept is disciplined agent behavior. Karpathy-derived provenance lives in the skill references, not in the overlay id.
 - `staff-engineering`, not an employer name: the durable concept is Staff+/principal engineering quality.
 - `research-audit`, not a lab-specific label: the durable concept is evidence-first research judgment.
 - `agent-supervision`, not one vendor or model: the durable concept is Codex owning final truth while workers do bounded labor.

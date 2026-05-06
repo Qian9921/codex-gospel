@@ -18,15 +18,26 @@ Portable rules that apply almost everywhere:
 
 ### Agent Discipline
 
-Portable anti-failure rules for coding agents, inspired by public discussion of common LLM coding mistakes:
+Portable anti-failure rules for coding agents, inspired by public discussion of common LLM coding mistakes and Andrej Karpathy's public framing of AI-assisted software work:
 
 - surface assumptions and ambiguity
 - prefer the smallest sufficient change
 - avoid speculative abstractions
 - avoid drive-by refactors
 - define verifiable goals
+- keep generation and verification in a tight loop
+- treat AI output as candidate code, not accepted truth
+- use partial autonomy rather than blind autonomy
+- distinguish throwaway vibe-coding prototypes from durable engineering work
+- make project context easy for future agents to load and verify
 
 The overlay is named `agent-discipline` because the stable concept is agent behavior, not any one person's name.
+
+Public source anchors for the Karpathy-derived part:
+
+- [Software 2.0](https://karpathy.medium.com/software-2-0-a64152b37c35)
+- [Software Is Changing (Again)](https://www.youtube.com/watch?v=LCEmiRjPEtQ)
+- [Searchable transcript of Software Is Changing (Again)](https://rosetta.to/u/ycombinator/andrej-karpathy-software-is-changing-again)
 
 ### Staff Engineering
 

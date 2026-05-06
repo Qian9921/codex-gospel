@@ -1,11 +1,11 @@
 ---
 name: codex-gospel-agent-discipline
-description: Use for non-trivial coding-agent work that needs assumption surfacing, simplicity, surgical edits, and goal-driven verification. This is the portable anti-overengineering and anti-drive-by overlay inspired by well-known LLM coding failure modes.
+description: "Use for non-trivial coding-agent work that needs assumption surfacing, AI-assisted development control, simplicity, surgical edits, goal-driven verification, or protection against overengineering and drive-by changes."
 ---
 
 # Codex Gospel: Agent Discipline
 
-This skill keeps agent work boring in the best way: clear target, small change, no hidden assumptions, no unnecessary machinery, and a verification loop that proves the claim.
+This skill keeps agent work boring in the best way: clear target, small change, no hidden assumptions, no unnecessary machinery, and a fast generation-verification loop that proves the claim.
 
 ## First Move
 
@@ -25,6 +25,30 @@ Before editing or recommending:
 - Do match local style even when another style is personally preferred.
 - Do remove only the unused code created by your own change.
 - Do use regression tests, targeted checks, or concrete reproduction commands when behavior changes.
+- Treat model output as a draft. Understand it before accepting it.
+- Keep autonomy proportional to verification. The more expensive or ambiguous the check, the smaller the agent step should be.
+- Prefer ask/review/then-edit for risky work: get the approach clear before letting code change.
+
+## AI-Assisted Workflow
+
+Use this loop for code that matters:
+
+1. Context: gather the smallest file/doc/test set that proves the current state.
+2. Intent: write one concrete outcome and the stop condition.
+3. Approach: decide the path before broad edits when risk is non-trivial.
+4. Patch: make one coherent change.
+5. Review: inspect the diff for unrelated churn, invented APIs, hidden behavior change, and local-style drift.
+6. Verify: run the narrowest command that proves the claim, then broaden if the blast radius requires it.
+7. Record: commit, doc, or final report should preserve the reason and evidence.
+
+## Reference Routing
+
+Load only what the task needs:
+
+- Source provenance and why this overlay is not named after a person: `references/source-map.md`
+- AI-assisted coding workflow and generation-verification loop: `references/ai-assisted-workflow.md`
+- Context packaging, prompt hygiene, and agent-readable repos: `references/context-and-spec.md`
+- Partial autonomy, autonomy sliders, and vibe-coding boundaries: `references/autonomy-and-verification.md`
 
 ## Red Flags
 
@@ -33,6 +57,9 @@ Before editing or recommending:
 - "The function is small, so it probably does not need a test."
 - "Tests pass, so review is done."
 - "The code explains itself, so intent does not need to be recorded."
+- "The agent generated it, so it is probably fine."
+- "It works in the demo, so the code does not matter."
+- "The diff is too large to inspect, but the feature works."
 
 ## Completion
 
