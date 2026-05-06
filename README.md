@@ -6,12 +6,22 @@ This repository is meant to be cloned into any machine or project where a team w
 
 ## What This Gives You
 
-Codex Gospel installs two surfaces:
+Codex Gospel installs two core surfaces:
 
 1. A reusable `AGENTS.md` block that Codex sees automatically when working in a directory.
 2. A `codex-gospel` skill that can be loaded when the work needs stricter review, research, debugging, planning, or implementation discipline.
 
-The practical result: Codex should stop acting like a vague chatbot and start acting like a careful engineering/research partner. It must inspect live state, separate facts from inference, explain professional details in normal language, and verify before claiming completion.
+It also ships optional overlays for the full public-safe gospel:
+
+| Overlay | What It Adds |
+| --- | --- |
+| `agent-discipline` | Assumption surfacing, simplicity, surgical edits, and verifiable goals. |
+| `staff-engineering` | Staff+/principal engineering judgment, code-health review, and high-assurance testing. |
+| `research-audit` | A-grade research analysis, numeric-evidence discipline, audit format, and durable research memory. |
+| `agent-supervision` | Codex-as-supervisor rules for worker agents and external model lanes. |
+| `domain-boundaries` | Source-of-truth rules for schemas, parsers, physics, units, frames, and producer/consumer contracts. |
+
+The practical result: Codex should stop acting like a vague chatbot and start acting like a careful engineering/research partner. It must inspect live state, separate facts from inference, explain professional details in normal language, verify before claiming completion, and load sharper overlays when the task needs them.
 
 ## Core Contract
 
@@ -38,6 +48,12 @@ Install globally for the current user:
 scripts/install.sh --scope user
 ```
 
+Install the full public-safe gospel globally:
+
+```bash
+scripts/install.sh --scope user --all-overlays
+```
+
 Install into a specific project:
 
 ```bash
@@ -50,10 +66,20 @@ Install both:
 scripts/install.sh --scope both --project-dir /path/to/project
 ```
 
+Install selected overlays:
+
+```bash
+scripts/install.sh --scope both --project-dir /path/to/project \
+  --overlay agent-discipline \
+  --overlay staff-engineering \
+  --overlay research-audit
+```
+
 Verify:
 
 ```bash
 scripts/doctor.sh --project-dir /path/to/project
+scripts/doctor.sh --project-dir /path/to/project --all-overlays
 ```
 
 If `codex` is installed, the doctor also checks whether `codex debug prompt-input` can see the installed rules.
@@ -65,6 +91,7 @@ AGENTS.md                         # Rules for working on this repo itself
 codex/skills/codex-gospel/         # Installable Codex skill
 docs/                              # Human-readable gospel reference
 examples/                          # Example project AGENTS files
+overlays/                          # Optional public-safe gospel overlays
 scripts/install.sh                 # Safe installer with marker-based updates
 scripts/doctor.sh                  # Local verification
 scripts/check-repo.sh              # CI/package sanity checks
@@ -79,7 +106,9 @@ The installer is designed to be additive:
 
 - It creates backups before changing an existing `AGENTS.md`.
 - It updates only marker-bounded gospel blocks.
-- It installs the skill under `${CODEX_HOME:-$HOME/.codex}/skills/codex-gospel`.
+- It installs user skills under `${CODEX_HOME:-$HOME/.codex}/skills/`.
+- It installs project skills under `<project>/.codex/skills/` for project-scoped installs.
+- It writes overlays into separate marker-bounded blocks.
 - It does not copy private memories, credentials, transcripts, or machine-specific paths.
 
 ## Recommended Adoption
@@ -87,15 +116,17 @@ The installer is designed to be additive:
 For an individual:
 
 1. Install `codex-gospel` globally.
-2. Add the project block to active repositories.
-3. Keep project-specific rules in the project `AGENTS.md`, below the universal gospel block.
+2. Add `--all-overlays` if you want the full public-safe gospel everywhere.
+3. Add the project block to active repositories.
+4. Keep project-specific rules in the project `AGENTS.md`, below the universal gospel and overlay blocks.
 
 For a team:
 
 1. Commit the project `AGENTS.md` block.
-2. Keep domain-specific overlays in repo docs.
+2. Install only the overlays the team actually wants.
 3. Make verification commands explicit.
 4. Review changes to `AGENTS.md` like production code, because it changes agent behavior.
+5. Keep private or project-specific rules below the public-safe gospel blocks.
 
 ## Remote Publishing
 
@@ -113,3 +144,10 @@ gh repo create YOUR_ORG/codex-gospel --public --source . --remote origin --push
 ```
 
 Use `--private` instead of `--public` if the repo should not be visible to everyone yet.
+
+## More Docs
+
+- [Overlay system](docs/overlay-system.md)
+- [Source inventory](docs/source-inventory.md)
+- [Audit format](docs/audit-format.md)
+- [Installation](docs/installation.md)

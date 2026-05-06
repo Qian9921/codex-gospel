@@ -2,6 +2,8 @@
 
 Codex Gospel is intentionally generic. Real projects should add their own overlays.
 
+For bundled public-safe overlays, see [overlay-system.md](overlay-system.md). This page explains how downstream projects should add their own local rules after installing the core or bundled overlays.
+
 ## What Belongs In Core
 
 Core rules should apply almost everywhere:
@@ -26,6 +28,12 @@ Project overlays should describe local truth:
 - deployment restrictions
 - security rules
 - research artifact policy
+
+## Where To Put Project Rules
+
+Keep public-safe bundled overlays in the marker blocks created by `scripts/install.sh`. Put private, local, or domain-specific rules below those blocks in the project `AGENTS.md`, or in project docs referenced by that `AGENTS.md`.
+
+Do not fork the universal core just to add a project rule. The universal core is the floor; project overlays are the local truth.
 
 ## Overlay Template
 

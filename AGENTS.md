@@ -35,10 +35,13 @@ Default to the shortest useful response.
 
 Core gospel rules must be useful across projects. Do not put a specific lab, company, repo, dataset, dependency, domain boundary, or personal workflow into the default templates.
 
+Public-safe reusable specializations may appear in `overlays/` when they remain portable, installable, and free of private paths or secrets.
+
 Project-specific rules may appear only in:
 
 - `examples/`
 - docs that clearly label the content as an overlay pattern
+- `overlays/` only after being generalized into a public-safe reusable rule
 - downstream user projects after installation
 
 ## Change Discipline
