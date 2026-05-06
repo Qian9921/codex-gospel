@@ -69,6 +69,7 @@ Bundled overlays:
 - `research-audit`
 - `agent-supervision`
 - `domain-boundaries`
+- `google-practices`
 
 ## Verification
 

@@ -12,6 +12,7 @@ required_files=(
   "codex/skills/codex-gospel/SKILL.md"
   "docs/audit-format.md"
   "docs/engineering-standards.md"
+  "docs/google-practices.md"
   "docs/overlay-system.md"
   "docs/source-inventory.md"
   "templates/snippets/AGENTS-gospel-block.md"
@@ -58,8 +59,8 @@ if grep -RInE "^description: [^\"'][^#]*: " codex/skills overlays; then
   exit 1
 fi
 
-if [[ "$overlay_count" -lt 5 ]]; then
-  echo "expected at least 5 bundled overlays, found $overlay_count" >&2
+if [[ "$overlay_count" -lt 6 ]]; then
+  echo "expected at least 6 bundled overlays, found $overlay_count" >&2
   exit 1
 fi
 

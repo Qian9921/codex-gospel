@@ -13,6 +13,7 @@ The core should be safe for almost any project. Overlays add sharper behavior fo
 | `research-audit` | Work involves research, data, math, algorithms, evaluation, numeric claims, or experiment strategy. | AGENTS block + `codex-gospel-research-audit` skill |
 | `agent-supervision` | Codex delegates to external agents, cheaper worker lanes, local CLIs, or multi-agent execution systems. | AGENTS block + `codex-gospel-agent-supervision` skill |
 | `domain-boundaries` | A repo has source-of-truth boundaries for schemas, parsers, physics, units, frames, data producers, or consumers. | AGENTS block + `codex-gospel-domain-boundaries` skill |
+| `google-practices` | Work should apply public Google engineering and research-practice anchors without bloating the default prompt. | AGENTS block + `codex-gospel-google-practices` skill with references |
 
 ## Naming Rules
 
@@ -23,6 +24,7 @@ Overlay names describe the stable job they do, not a person, employer, or local 
 - `research-audit`, not a lab-specific label: the durable concept is evidence-first research judgment.
 - `agent-supervision`, not one vendor or model: the durable concept is Codex owning final truth while workers do bounded labor.
 - `domain-boundaries`, not one domain project: the durable concept is one source of truth per domain contract.
+- `google-practices` is the exception that names a public source family on purpose: provenance is the feature, and the details live in references instead of the core prompt.
 
 ## Install Examples
 

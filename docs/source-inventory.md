@@ -80,6 +80,36 @@ Portable source-of-truth discipline from multi-repo and scientific systems:
 - boundary-first tests protect producer-consumer contracts
 - new gates should audit existing artifacts as well as future changes
 
+### Google Practices
+
+Public Google source-backed engineering and research practice, distilled for Codex use:
+
+- code review should improve long-term code health while allowing progress
+- small CLs are easier to review, test, merge, and roll back
+- style guides are consistency anchors, but local project formatters and rules come first
+- tests should be fast, deterministic, scoped, and trusted; flaky tests are defects
+- API design should make resources, compatibility, migration, and user-facing errors explicit
+- ML work should start with metrics, simple baselines, trustworthy pipelines, and skew/leakage checks
+- reliability work should define user-visible SLIs and SLOs before alerting or optimization
+- developer docs should be clear, reader-focused, and project-style-aware
+- responsible AI work should document stakeholders, limits, risks, evaluation gaps, and monitoring
+
+Public source anchors:
+
+- [Google Style Guides](https://google.github.io/styleguide/)
+- [Google Engineering Practices](https://google.github.io/eng-practices/)
+- [Software Engineering at Google: Testing Overview](https://abseil.io/resources/swe-book/html/ch11.html)
+- [Google API Improvement Proposals](https://google.aip.dev/)
+- [Google SRE Book: Service Level Objectives](https://sre.google/sre-book/service-level-objectives/)
+- [Google Developer Documentation Style Guide](https://developers.google.com/style)
+- [Rules of Machine Learning](https://developers.google.com/machine-learning/guides/rules-of-ml/)
+- [Google AI Principles](https://ai.google/principles/)
+- [People + AI Guidebook](https://pair.withgoogle.com/guidebook/)
+- [Model Cards](https://deepmind.google/models/model-cards/)
+- [Data Cards Playbook](https://pair.withgoogle.com/datacardsplaybook/)
+
+The overlay is named `google-practices` because the stable value is public-source provenance. It remains progressive-disclosure: only the short overlay block is always visible, while detailed guidance lives under the skill's `references/` folder.
+
 ## What Is Deliberately Not Included
 
 - Private chat logs, transcripts, memories, or credential files.

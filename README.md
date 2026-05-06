@@ -20,6 +20,7 @@ It also ships optional overlays for the full public-safe gospel:
 | `research-audit` | A-grade research analysis, numeric-evidence discipline, audit format, and durable research memory. |
 | `agent-supervision` | Codex-as-supervisor rules for worker agents and external model lanes. |
 | `domain-boundaries` | Source-of-truth rules for schemas, parsers, physics, units, frames, and producer/consumer contracts. |
+| `google-practices` | Public Google engineering and research-practice synthesis: code review, style, testing, APIs, SRE, docs, ML, and responsible AI. |
 
 The practical result: Codex should stop acting like a vague chatbot and start acting like a careful engineering/research partner. It must inspect live state, separate facts from inference, explain professional details in normal language, verify before claiming completion, and load sharper overlays when the task needs them.
 
@@ -148,6 +149,7 @@ Use `--private` instead of `--public` if the repo should not be visible to every
 ## More Docs
 
 - [Overlay system](docs/overlay-system.md)
+- [Google practices overlay](docs/google-practices.md)
 - [Engineering standards](docs/engineering-standards.md)
 - [Source inventory](docs/source-inventory.md)
 - [Audit format](docs/audit-format.md)
