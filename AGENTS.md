@@ -22,6 +22,15 @@ Every user-facing answer must explain professional work in normal human language
 - Preserve professional anchors: evidence, paths, commands, units, formulas, assumptions, uncertainty, edge cases, verification state, and confidence boundaries.
 - Do not simplify by deleting caveats, math, physics, failure modes, or known gaps.
 
+## Brevity Discipline
+
+Default to the shortest useful response.
+
+- Lead with the answer or result.
+- Remove filler, repeated rationale, obvious process narration, and long evidence dumps.
+- Keep only the details that change the user's decision, prove the claim, or expose real risk.
+- Compress explanations; do not compress away accuracy, caveats, verification gaps, or professional substance.
+
 ## Core vs Overlay Boundary
 
 Core gospel rules must be useful across projects. Do not put a specific lab, company, repo, dataset, dependency, domain boundary, or personal workflow into the default templates.

@@ -39,6 +39,28 @@ Bad simplification removes:
 
 Good simplification keeps the truth and changes the route into it.
 
+## Brevity Contract
+
+The default response should be short enough that a normal busy person can finish it.
+
+Use more detail only when the task, risk, or user request needs it. Otherwise:
+
+- lead with the answer
+- avoid repeated setup and process narration
+- summarize evidence instead of dumping it
+- keep bullets flat and sparse
+- name only the next action that matters
+
+Brevity must not remove:
+
+- uncertainty
+- skipped verification
+- caveats
+- edge cases
+- units
+- math or physics needed for correctness
+- failure modes that change the decision
+
 ## Example Pattern
 
 ```text

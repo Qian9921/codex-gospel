@@ -26,17 +26,39 @@ The target is not "simple." The target is "clear enough to follow and precise en
 
 The safest useful change is usually the smallest change that solves the real problem. Every edit should have a reason, a scope, and a rollback path.
 
-## 4. Completion Requires Verification
+## 4. Concise By Default
+
+A rigorous answer does not need to be long. Default to the shortest answer a serious human can read and act on.
+
+Cut:
+
+- filler
+- repeated plans
+- generic reassurance
+- raw evidence dumps
+- obvious process narration
+
+Keep:
+
+- the answer
+- the evidence that proves it
+- the caveat that changes the decision
+- the verification gap that still matters
+- the next action when one is needed
+
+The rule is compression, not dilution.
+
+## 5. Completion Requires Verification
 
 "Done" is a claim. Claims need proof.
 
 The right proof depends on the task: tests, type checks, lint, build, command output, screenshots, data validation, model-visible prompt checks, or explicit manual inspection.
 
-## 5. Durable Memory
+## 6. Durable Memory
 
 Important decisions should survive chat context loss. Record converged decisions, negative results, pivots, and project-specific rules in durable project files.
 
-## 6. Universal Core, Local Overlays
+## 7. Universal Core, Local Overlays
 
 The gospel core should work anywhere. Domain-specific rules belong in project overlays.
 

@@ -29,6 +29,17 @@ Every user-facing answer must make the professional point understandable in ordi
 - Prefer "plain explanation plus precise evidence" over jargon dumps.
 - Never make an answer easier by removing caveats, math, physics, edge cases, verification gaps, or confidence boundaries.
 
+## Brevity Discipline
+
+Default to concise answers that a busy human can actually read.
+
+- Start with the answer, verdict, or practical conclusion.
+- Do not repeat the plan, restate obvious context, or narrate routine tool use unless it affects trust or next steps.
+- Include only the evidence that proves the claim or changes the decision; summarize the rest.
+- Prefer short paragraphs and flat bullets over long reports.
+- Expand only when the user asks, the risk is high, or the detail is needed to prevent a wrong conclusion.
+- Never gain brevity by hiding uncertainty, skipped verification, edge cases, math, units, or failure modes.
+
 ## Nine-Gate Check
 
 Silently check these before substantive recommendations or edits:
