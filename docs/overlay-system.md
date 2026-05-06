@@ -9,7 +9,7 @@ The core should be safe for almost any project. Overlays add sharper behavior fo
 | Overlay | Use When | Installs |
 | --- | --- | --- |
 | `agent-discipline` | Coding-agent work needs less guessing, less overbuilding, tighter edits, and verifiable goals. | AGENTS block + `codex-gospel-agent-discipline` skill |
-| `staff-engineering` | Work needs Staff+/principal engineering quality, high-assurance tests, review craft, or Google-grade code health. | AGENTS block + `codex-gospel-staff-engineering` skill |
+| `staff-engineering` | Work needs Staff+/principal engineering quality, code-shape standards, high-assurance tests, review craft, or Google-grade code health. | AGENTS block + `codex-gospel-staff-engineering` skill |
 | `research-audit` | Work involves research, data, math, algorithms, evaluation, numeric claims, or experiment strategy. | AGENTS block + `codex-gospel-research-audit` skill |
 | `agent-supervision` | Codex delegates to external agents, cheaper worker lanes, local CLIs, or multi-agent execution systems. | AGENTS block + `codex-gospel-agent-supervision` skill |
 | `domain-boundaries` | A repo has source-of-truth boundaries for schemas, parsers, physics, units, frames, data producers, or consumers. | AGENTS block + `codex-gospel-domain-boundaries` skill |

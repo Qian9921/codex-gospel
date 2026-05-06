@@ -24,6 +24,7 @@ Project overlays should describe local truth:
 - architecture boundaries
 - data-governance rules
 - domain-specific units and conventions
+- project-specific code length, complexity, formatter, and review-size limits
 - release process
 - deployment restrictions
 - security rules

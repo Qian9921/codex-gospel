@@ -34,11 +34,20 @@ Portable Staff+/principal engineering habits, grounded in public engineering-pra
 
 - optimize for code health
 - split changes into reviewable units
+- apply code-shape alarms for long functions, long files, deep nesting, parameter count, and oversized changes
 - write useful change descriptions
 - review design, correctness, readability, tests, naming, comments, and maintainability
 - add high-assurance tests for logic, formulas, metrics, bugs, and workflows
 
 The overlay is named `staff-engineering` because the stable concept is the operating bar, not a single company.
+
+Public style-guide anchors used for the concrete code-shape defaults:
+
+- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html): 80-character line length and an about-40-line function-length review trigger.
+- [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html): 80-character line length and small focused functions.
+- [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html): 100-character column limit and wrapping guidance.
+
+Those anchors are not copied as universal law. Project formatters and local style guides still win.
 
 ### Research Audit
 

@@ -11,6 +11,7 @@ required_files=(
   "LICENSE"
   "codex/skills/codex-gospel/SKILL.md"
   "docs/audit-format.md"
+  "docs/engineering-standards.md"
   "docs/overlay-system.md"
   "docs/source-inventory.md"
   "templates/snippets/AGENTS-gospel-block.md"

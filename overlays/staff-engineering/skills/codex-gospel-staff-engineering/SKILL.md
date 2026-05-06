@@ -25,6 +25,22 @@ Before a commit or PR-style closeout, check:
 4. Verification commands are named, not waved at.
 5. Risks and non-goals are explicit when they matter.
 
+## Code Shape Standards
+
+Project-local formatters, linters, and style guides win. If the repo does not define a standard, use these as review alarms:
+
+- Function around 40 logical lines: consider whether a split would clarify the code.
+- Function around 80 logical lines: split or give a concrete reason not to.
+- Function around 150 logical lines: treat as a serious design smell unless it is generated, table-driven, parser-like, or otherwise intentionally shaped.
+- File around 400 lines: check whether it still has one clear responsibility.
+- File around 800 lines: split or document why it must stay together.
+- File around 1200 lines: treat as a refactor candidate unless generated, vendor, fixture, or deliberately monolithic.
+- More than 3 meaningful nesting levels: simplify with guards, helpers, or table-driven logic when it improves clarity.
+- More than 5 parameters: check the API contract. More than 7 usually needs a clearer boundary or structured input.
+- More than 400 non-generated changed lines: split the change or explain why one review unit is safer.
+
+Do not enforce one-function-per-file as a universal rule. Prefer one file per cohesive concept, ownership boundary, module, command, adapter, model, or test subject. Keep private helpers near their only caller unless moving them improves reuse or comprehension.
+
 ## Review Bar
 
 Review design, correctness, readability, tests, naming, comments, maintainability, and code health. A passing test suite is evidence, not approval by itself.

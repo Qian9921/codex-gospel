@@ -16,7 +16,7 @@ It also ships optional overlays for the full public-safe gospel:
 | Overlay | What It Adds |
 | --- | --- |
 | `agent-discipline` | Assumption surfacing, simplicity, surgical edits, and verifiable goals. |
-| `staff-engineering` | Staff+/principal engineering judgment, code-health review, and high-assurance testing. |
+| `staff-engineering` | Staff+/principal engineering judgment, code-shape standards, code-health review, and high-assurance testing. |
 | `research-audit` | A-grade research analysis, numeric-evidence discipline, audit format, and durable research memory. |
 | `agent-supervision` | Codex-as-supervisor rules for worker agents and external model lanes. |
 | `domain-boundaries` | Source-of-truth rules for schemas, parsers, physics, units, frames, and producer/consumer contracts. |
@@ -148,6 +148,7 @@ Use `--private` instead of `--public` if the repo should not be visible to every
 ## More Docs
 
 - [Overlay system](docs/overlay-system.md)
+- [Engineering standards](docs/engineering-standards.md)
 - [Source inventory](docs/source-inventory.md)
 - [Audit format](docs/audit-format.md)
 - [Installation](docs/installation.md)
